@@ -1833,6 +1833,24 @@ a {
   color: var(--rail-icon);
 }
 
+.splash-sub a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 3px;
+}
+
+.splash-sub a:hover {
+  text-decoration-color: #ed3c6a;
+}
+
+.splash-sub a:focus-visible {
+  outline: 2px solid #ed3c6a;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 .splash-options {
   margin-top: 44px;
   width: 100%;

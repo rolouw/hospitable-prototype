@@ -22,7 +22,12 @@ export function Splash() {
           <HospitableMark size={44} />
           <span>hospitable</span>
         </div>
-        <p className="splash-sub">Merge duplicate listings prototype</p>
+        <p className="splash-sub">
+          Merge duplicate listings prototype by{' '}
+          <a href="https://www.linkedin.com/in/roann-louw-a0452651/" target="_blank" rel="noopener noreferrer">
+            Roann Louw
+          </a>
+        </p>
 
         <h1 className="sr-only">Choose where to start</h1>
         <div className="splash-options">
