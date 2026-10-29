@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LOCATION, getListings } from '../data/listings'
-import { Entry, propertyName, useMerge } from '../state/merge'
+import { Entry, mergedProperty, useMerge } from '../state/merge'
 import { Icon } from './Icons'
 import { PlatformMark } from './ui'
 
@@ -67,8 +67,9 @@ export function MergePrompt({ entry }: { entry: Entry }) {
 /** Shown in place of the prompt once the listings are merged */
 export function MergedProperty() {
   const lead = useMerge((s) => s.lead)
-  const { airbnb, booking } = getListings('full')
-  const cover = (lead === 'booking' ? booking : airbnb).photos[0].background
+  const fields = useMerge((s) => s.fields)
+  const variant = useMerge((s) => s.variant)
+  const { name, cover } = mergedProperty({ lead, fields, variant })
 
   return (
     <>
@@ -85,8 +86,8 @@ export function MergedProperty() {
       <section className="plist" aria-label="Merged property">
         <div className="plist-head">Two listings</div>
         <div className="prow">
-          <span className="thumb" style={{ background: cover }} role="img" aria-label="Cover photo" />
-          <span className="name">{propertyName(lead)}</span>
+          <span className="thumb" style={{ background: cover.background }} role="img" aria-label={`${cover.label}, cover photo`} />
+          <span className="name">{name}</span>
           <span className="chip purple">New</span>
           <span className="logos">
             <PlatformMark platform="airbnb" size="sm" />

@@ -26,10 +26,11 @@ Opens on http://localhost:5178/. URLs use a hash (`/#/properties`) so the site w
 ## Small additions beyond the spec
 - **Set up and grow** (`/setup`, sidebar) is a second entry point, shown right after the host connects both accounts. It confirms the connection and shows the same merge prompt. Leaving the flow early (No, Not now, Save and finish later) returns to whichever screen the host started from.
 - **Start from our suggestion** link inside "Write a new combined version" fills in the suggested Direct Booking text.
-- A step only shows as done once the host has opened it, so Description's default (Keep) does not tick off a step they have not seen.
+- Description starts with nothing selected, like the other field steps (the spec had it default to Keep).
+- The merged property on the list after publishing takes the title and cover the host chose (the direct booking values), or Booking.com's name when Booking.com leads.
 - **Remind me later** shows a short toast. The prompt stays.
 - On 8h, a channel with no changes shows "Stays as it is" and "No changes" instead of "Goes live right away".
-- Photos: "Combine into one set" is replaced by **Pick photos for both**. It shows every photo from both listings to tick; both channels and the direct booking site show exactly the picked photos, in the order picked, with the first as cover. Next stays disabled until at least one is picked.
+- Photos: "Combine into one set" is replaced by **Pick photos for both**. It shows every photo from both listings to tick; both channels and the direct booking site show exactly the picked photos, in the order picked, with the first as cover. Next stays disabled, with a warning, until at least 5 are picked.
 - The direct booking site uses the chosen photo set when one platform's set or picked photos are chosen, otherwise the combined set with Airbnb's cover.
 
 ## Publishing

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import {
   BOOKING_PROPERTY_NAME,
+  MIN_PHOTOS,
   FieldKey,
   Listing,
   PHOTOS,
@@ -61,7 +62,7 @@ const initial: MergeData = {
   lead: 'airbnb',
   fields: {
     title: { choice: null, custom: '' },
-    description: { choice: 'keep', custom: '' },
+    description: { choice: null, custom: '' },
     cleaningFee: { choice: null },
     photos: { choice: null, selected: [] },
   },
@@ -94,7 +95,7 @@ export const useMerge = create<MergeState>()(
     {
       name: 'hospitable-option-8',
       storage: createJSONStorage(() => sessionStorage),
-      version: 2,
+      version: 3,
       // Sessions saved before photo picking existed start over
       migrate: () => initial as unknown as MergeState,
     },
@@ -115,7 +116,7 @@ export function isFieldReady(fields: Fields, field: FieldKey): boolean {
   const f = fields[field]
   if (f.choice === null) return false
   if (f.choice === 'mix' && 'custom' in f) return f.custom.trim().length > 0
-  if (f.choice === 'mix' && 'selected' in f) return f.selected.length > 0
+  if (f.choice === 'mix' && 'selected' in f) return f.selected.length >= MIN_PHOTOS
   return true
 }
 
@@ -279,8 +280,10 @@ export function directRows(s: MergeData): FieldRow[] {
 }
 
 /** Name the merged property takes, from the lead listing */
-export function propertyName(lead: Lead): string {
-  return lead === 'booking' ? BOOKING_PROPERTY_NAME : getListings('full').airbnb.title
+/** Name and cover of the merged property, from the host's choices (the same values as the direct booking listing) */
+export function mergedProperty(s: Pick<MergeData, 'lead' | 'fields' | 'variant'>): { name: string; cover: Photo } {
+  const d = directValues(resolveChoices(s), s.fields, getListings(s.variant))
+  return { name: s.lead === 'booking' ? BOOKING_PROPERTY_NAME : d.title, cover: d.photos[0] }
 }
 
 export function variantFields(variant: Variant): FieldKey[] {

@@ -45,6 +45,9 @@ export const BOOKING_PROPERTY_NAME = 'Zagore Stone House'
 /** Short name used in headers while reviewing */
 export const PROPERTY_SHORT_NAME = 'Stone house in Zagore'
 
+/** Fewest photos a host can pick for both listings */
+export const MIN_PHOTOS = 5
+
 export const AIRBNB_TITLE_LIMIT = 50
 export const AIRBNB_DESCRIPTION_LIMIT = 500
 

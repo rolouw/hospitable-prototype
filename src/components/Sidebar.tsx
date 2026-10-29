@@ -20,7 +20,12 @@ const items: Item[] = [
 export function Sidebar() {
   const collapsed = useMerge((s) => s.sidebarCollapsed)
   const toggle = useMerge((s) => s.toggleSidebar)
-  const onSetup = useLocation().pathname === '/setup'
+  const path = useLocation().pathname
+  const entry = useMerge((s) => s.entry)
+  // Inside the merge flow, highlight whichever section the host started from
+  const section = path.startsWith('/merge') ? entry : path
+  const onSetup = section === '/setup'
+  const onProperties = section === '/properties'
 
   return (
     <aside className={collapsed ? 'rail collapsed' : 'rail'}>
@@ -69,7 +74,7 @@ export function Sidebar() {
           )
           const title = collapsed ? it.label : undefined
           return it.to ? (
-            <Link key={it.label} to={it.to} className="rail-item" aria-current={!onSetup ? 'page' : undefined} title={title}>
+            <Link key={it.label} to={it.to} className="rail-item" aria-current={onProperties ? 'page' : undefined} title={title}>
               {content}
             </Link>
           ) : (

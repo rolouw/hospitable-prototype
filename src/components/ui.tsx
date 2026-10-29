@@ -1,6 +1,6 @@
 import { ReactNode, useId } from 'react'
-import { PLATFORM_NAME, Photo, Platform } from '../data/listings'
-import { HospitableMark } from './Icons'
+import { MIN_PHOTOS, PLATFORM_NAME, Photo, Platform } from '../data/listings'
+import { HospitableMark, Icon } from './Icons'
 
 const LOGO_HEIGHT = { sm: 18, md: 20, card: 22, lg: 24 }
 
@@ -88,16 +88,17 @@ export function PhotoPicker({ photos, selected, onChange, caption }: PhotoPicker
   const toggle = (id: string) =>
     onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id])
   const allPicked = selected.length === photos.length
+  const tooFew = selected.length > 0 && selected.length < MIN_PHOTOS
 
   return (
     <fieldset className="picker">
       <legend className="sr-only">Photos for both platforms</legend>
       <div className="picker-head">
-        <span aria-live="polite">
+        <span>
           <b>
             {selected.length} of {photos.length} selected.
           </b>{' '}
-          <span className="muted">The first photo you pick is the cover.</span>
+          <span className="muted">Pick at least {MIN_PHOTOS}. The first photo you pick is the cover.</span>
         </span>
         <button
           type="button"
@@ -108,6 +109,14 @@ export function PhotoPicker({ photos, selected, onChange, caption }: PhotoPicker
         >
           {allPicked ? 'Clear all' : 'Select all'}
         </button>
+      </div>
+      <div aria-live="polite">
+        {tooFew && (
+          <p className="picker-warn">
+            <Icon.Warning width={16} height={16} />
+            Select a minimum of {MIN_PHOTOS} photos. {MIN_PHOTOS - selected.length} more to go.
+          </p>
+        )}
       </div>
       <div className="picker-grid">
         {photos.map((p) => {

@@ -1634,6 +1634,24 @@ a {
   font-weight: 600;
 }
 
+.picker-warn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 14px;
+  font-weight: 600;
+  animation: enter-fade 160ms ease-out backwards;
+}
+
+.picker-warn svg {
+  flex: none;
+}
+
 .picker-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
