@@ -1,0 +1,50 @@
+:root {
+  --ink: #1d1726;
+  --ink-soft: #3a3345;
+  --muted: #5f576b;
+  --faint: #9a93a3;
+
+  --rail-bg: #16062b;
+  --rail-active: #2d1b45;
+  --rail-text: #f3ecfa;
+  --rail-text-2: #e9def5;
+  --rail-icon: #b9a6d1;
+  --rail-border: #4a3066;
+  --rail-card: #3d1f66;
+  --rail-button: #7b3fc4;
+
+  --primary: #c8104b;
+  --primary-tint: #fff7fa;
+  --primary-hover-line: #e8a3b8;
+  --purple: #6b3fa8;
+  --purple-text: #4a2f78;
+  --purple-text-2: #5b3d8c;
+  --purple-tint: #efe6fa;
+  --purple-step: #f5effc;
+
+  --line: #e4dfea;
+  --line-soft: #eee9f2;
+  --line-input: #cfc9d6;
+  --line-option: #d9d3e0;
+  --surface-alt: #faf8fc;
+  --surface-diff: #f8f3fd;
+
+  --warn-bg: #fff1d6;
+  --warn-text: #7a4600;
+  --warn-line: #f0cf8f;
+  --warn-surface: #fff8e8;
+  --diff-mark: #ffe3a8;
+  --ok-bg: #e1f3ea;
+  --ok-text: #16603f;
+  --ok-line: #bfe3d0;
+  --ok-surface: #eef8f2;
+  --success: #1f7a52;
+  --done: #2a8a62;
+  --neutral-chip: #f1eff4;
+
+  --scrim: rgba(22, 6, 43, 0.6);
+
+  --font: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+}
